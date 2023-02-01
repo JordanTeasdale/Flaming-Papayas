@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(Input.GetAxis("Horizontal"));
+        //Debug.Log(Input.GetAxis("Horizontal"));
         Jump();
         Movement();
 
@@ -35,9 +35,12 @@ public class Player : MonoBehaviour
             if (rb.velocity.y <= 0 && GetComponent<Rigidbody2D>().velocity.y >= -0.005) {
                 rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
                 currExtraJumps = numOfExtraJumps;
-            } else if (currExtraJumps > 0 && !hasJumped) {
+                StartCoroutine(CameraShake.Instance.ShakeCamera(1f, 0.3f));  //Showing the syntax for camera shake for JUICING the game
+            } 
+            else if (currExtraJumps > 0 && !hasJumped) 
+            {
                 rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
-                    currExtraJumps--;
+                currExtraJumps--;
             }
             hasJumped = true;
         }
