@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField]GameObject feet;
     [SerializeField] uint numOfExtraJumps;
+    [SerializeField] float jumpHeight;
+    [SerializeField] float movementSpeed;
     uint currExtraJumps;
     bool hasJumped;
     Vector2 movement;
@@ -32,10 +33,10 @@ public class Player : MonoBehaviour
     void Jump() {
         if (Input.GetAxis("Jump") != 0) {
             if (rb.velocity.y <= 0 && GetComponent<Rigidbody2D>().velocity.y >= -0.005) {
-                rb.velocity = new Vector2(rb.velocity.x, 10f);
+                rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
                 currExtraJumps = numOfExtraJumps;
             } else if (currExtraJumps > 0 && !hasJumped) {
-                rb.velocity = new Vector2(rb.velocity.x, 10f);
+                rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
                     currExtraJumps--;
             }
             hasJumped = true;
@@ -45,6 +46,6 @@ public class Player : MonoBehaviour
     }
 
     void Movement() {
-        rb.velocity = new Vector2(5 * Input.GetAxis("Horizontal"), rb.velocity.y);
+        rb.velocity = new Vector2(movementSpeed * Input.GetAxis("Horizontal"), rb.velocity.y);
     }
 }
