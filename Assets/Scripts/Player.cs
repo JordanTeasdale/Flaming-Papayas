@@ -46,6 +46,7 @@ public class Player : MonoBehaviour
     }
 
     void Movement() {
+        
         rb.velocity = new Vector2(movementSpeed * Input.GetAxis("Horizontal"), rb.velocity.y);
     }
 }
