@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
     [SerializeField] uint numOfExtraJumps;
     [SerializeField] float jumpHeight;
     [SerializeField] float movementSpeed;
+    [SerializeField] Animator anim;
+    [SerializeField] SpriteRenderer rendrr;
     uint currExtraJumps;
     bool hasJumped;
     Vector2 movement;
@@ -32,7 +34,7 @@ public class Player : MonoBehaviour
 
     void Jump() {
         if (Input.GetAxis("Jump") != 0) {
-            if (rb.velocity.y <= 0 && GetComponent<Rigidbody2D>().velocity.y >= -0.005) {
+            if (rb.velocity.y <= 0.005 && rb.velocity.y >= -0.005) {
                 rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
                 currExtraJumps = numOfExtraJumps;
                 StartCoroutine(CameraShake.Instance.ShakeCamera(1f, 0.3f));  //Showing the syntax for camera shake for JUICING the game
@@ -49,7 +51,27 @@ public class Player : MonoBehaviour
     }
 
     void Movement() {
-        
-        rb.velocity = new Vector2(movementSpeed * Input.GetAxis("Horizontal"), rb.velocity.y);
+        float xDir = Input.GetAxis("Horizontal");
+        Debug.Log(new Vector2(movementSpeed * xDir, rb.velocity.y));
+        rb.velocity = new Vector2(movementSpeed * xDir, rb.velocity.y);
+        if (rb.velocity.y <= 0.005 && rb.velocity.y >= -0.005) {
+            if (xDir < 0) {
+                anim.SetBool("isRunning", true);
+                rendrr.flipX = true;
+            } else if (xDir > 0) {
+                anim.SetBool("isRunning", true);
+                rendrr.flipX = false;
+            } else {
+                anim.SetBool("isRunning", false);
+            }
+        }
+        else {
+            anim.SetBool("isRunning", false);
+            if (xDir < 0) {
+                rendrr.flipX = true;
+            } else if (xDir > 0) {
+                rendrr.flipX = false;
+            }
+        }
     }
 }
