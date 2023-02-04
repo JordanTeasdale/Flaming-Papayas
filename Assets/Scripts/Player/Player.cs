@@ -14,6 +14,8 @@ public class Player : MonoBehaviour, IDamageable
     Vector2 movement;
     Rigidbody2D rb;
 
+    public bool canMove = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,8 +29,11 @@ public class Player : MonoBehaviour, IDamageable
     void Update()
     {
         //Debug.Log(Input.GetAxis("Horizontal"));
-        Jump();
-        Movement();
+        if(canMove)
+        {
+            Jump();
+            Movement();
+        }
 
     }
 
