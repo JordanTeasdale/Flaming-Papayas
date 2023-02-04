@@ -1560,6 +1560,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RollingStone
       objectReference: {fileID: 0}
+    - target: {fileID: 3021030291743323247, guid: 231cc0bc7fc3993459a94745cbc4b434, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3021030291743323249, guid: 231cc0bc7fc3993459a94745cbc4b434, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -1570,7 +1574,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3021030291743323249, guid: 231cc0bc7fc3993459a94745cbc4b434, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.05
+      value: -1.995
       objectReference: {fileID: 0}
     - target: {fileID: 3021030291743323249, guid: 231cc0bc7fc3993459a94745cbc4b434, type: 3}
       propertyPath: m_LocalPosition.z

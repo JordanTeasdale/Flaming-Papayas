@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IDamageable
 {
     [SerializeField] uint numOfExtraJumps;
     [SerializeField] float jumpHeight;
@@ -52,7 +52,6 @@ public class Player : MonoBehaviour
 
     void Movement() {
         float xDir = Input.GetAxis("Horizontal");
-        Debug.Log(new Vector2(movementSpeed * xDir, rb.velocity.y));
         rb.velocity = new Vector2(movementSpeed * xDir, rb.velocity.y);
         if (rb.velocity.y <= 0.005 && rb.velocity.y >= -0.005) {
             if (xDir < 0) {
@@ -73,5 +72,9 @@ public class Player : MonoBehaviour
                 rendrr.flipX = false;
             }
         }
+    }
+
+    public void TakeDamage(int damage) {
+        Debug.Log("Dies from Cringe");
     }
 }
