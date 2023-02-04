@@ -37,7 +37,6 @@ public class Player : MonoBehaviour, IDamageable
             if (rb.velocity.y <= 0.005 && rb.velocity.y >= -0.005) {
                 rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
                 currExtraJumps = numOfExtraJumps;
-                StartCoroutine(CameraShake.Instance.ShakeCamera(1f, 0.3f));  //Showing the syntax for camera shake for JUICING the game
             } 
             else if (currExtraJumps > 0 && !hasJumped) 
             {
@@ -72,9 +71,19 @@ public class Player : MonoBehaviour, IDamageable
                 rendrr.flipX = false;
             }
         }
+        if (rb.velocity.y >= 0.005)
+            anim.SetBool("isJumping", true);
+        else
+            anim.SetBool("isJumping", false);
+        if (rb.velocity.y <= -0.005)
+            anim.SetBool("isFalling", true);
+        else
+            anim.SetBool("isFalling", false);
     }
 
     public void TakeDamage(int damage) {
         Debug.Log("Dies from Cringe");
+
+        StartCoroutine(CameraShake.Instance.ShakeCamera(1f, 0.3f));  //Showing the syntax for camera shake for JUICING the game
     }
 }
