@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RollingStone : MonoBehaviour
 {
+    [SerializeField] SpriteRenderer rendrr;
     [SerializeField] float distance;
     [SerializeField] float speed;
     float distanceTravel = 0;
@@ -19,6 +20,7 @@ public class RollingStone : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (distanceTravel < distance) {
             movement = speed * Time.deltaTime;
             currPos = gameObject.transform.position;
@@ -28,6 +30,7 @@ public class RollingStone : MonoBehaviour
         else {
             speed *= -1;
             distanceTravel= 0;
+            rendrr.flipX = !rendrr.flipX;
         }
     }
 }
