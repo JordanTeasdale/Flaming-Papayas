@@ -1,15 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//using UnityEngine.SceneManagement;
 
-//This script will be engaged into the god who will talk with the user to give the tutorial.
 public class NPC_Tutorial : MonoBehaviour
 {
     // Start is called before the first frame update
     private Dialog dialogue;
     private bool canTalk = true;
     [SerializeField] private Animator anim;
-    [SerializeField] private string sceneToLoad;
+    //[SerializeField] private string sceneToLoad;  If we want to load another level when transition ends.
 
     void Start()
     {
@@ -21,6 +21,13 @@ public class NPC_Tutorial : MonoBehaviour
     {
 
     }
+
+    //IEnumerator FadeOut()
+    //{
+    //    anim.SetTrigger("Fade");
+    //    yield return new WaitForSeconds(3);
+    //    SceneManager.LoadScene(sceneToLoad);
+    //}
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -35,7 +42,8 @@ public class NPC_Tutorial : MonoBehaviour
     {
         if (collision.tag == "Player" && !canTalk)
         {
-            //Do something when existing the talking area if you want 
+            //StartCoroutine(FadeOut());  If changing the scene 
+            //Do something when exiting the chat after chat has ended
         }
     }
 }
