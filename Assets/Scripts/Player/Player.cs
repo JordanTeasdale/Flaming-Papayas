@@ -37,6 +37,9 @@ public class Player : MonoBehaviour, IDamageable
         else
         {
             rb.velocity = new Vector2(0 ,0); //Stop player
+            anim.SetBool("isJumping", false);
+            anim.SetBool("isFalling", false);
+            anim.SetBool("isRunning", false);
         }
 
     }
