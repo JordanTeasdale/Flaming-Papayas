@@ -11,11 +11,13 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField] Animator anim;
     [SerializeField] SpriteRenderer rendrr;
     [SerializeField] GameObject deathMenu;
+    [SerializeField] GameObject feet;
     uint currExtraJumps;
     bool hasJumped;
     Vector2 movement;
     Rigidbody2D rb;
 
+    public bool isOnGround = false;
     public bool canMove = true;
     public bool hasKey = false;
 
@@ -49,7 +51,7 @@ public class Player : MonoBehaviour, IDamageable
 
     void Jump() {
         if (Input.GetAxis("Jump") != 0) {
-            if (rb.velocity.y <= 0.005 && rb.velocity.y >= -0.005) {
+            if (isOnGround) {
                 rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
                 currExtraJumps = numOfExtraJumps;
             } 
@@ -118,4 +120,5 @@ public class Player : MonoBehaviour, IDamageable
         yield return new WaitForSeconds(2);
         deathMenu.SetActive(true);
     }
+
 }
