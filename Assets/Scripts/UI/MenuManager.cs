@@ -14,6 +14,7 @@ public class MenuManager : MonoBehaviour
     public void StartGame()
     {
         //Start Load next level function
+        PlayerPrefs.SetInt("CanTalkPref", 0);
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentSceneIndex + 1);
     }

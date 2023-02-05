@@ -31,9 +31,11 @@ public class NPC_Tutorial : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player" && canTalk)
+        if (collision.tag == "Player" && canTalk && PlayerPrefs.GetInt("CanTalkPref") == 0)
         {
             canTalk = false;
+            PlayerPrefs.SetInt("CanTalkPref", 1);
+            PlayerPrefs.Save();
             dialogue.StartDialogue();
         }
     }
