@@ -15,6 +15,7 @@ public class Player : MonoBehaviour, IDamageable
     Rigidbody2D rb;
 
     public bool canMove = true;
+    public bool hasKey = false;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +24,6 @@ public class Player : MonoBehaviour, IDamageable
         hasJumped = false;
         movement = new Vector2(0, 0);
         rb = GetComponent<Rigidbody2D>();
-        Time.timeScale= 1.0f;
     }
 
     // Update is called once per frame
@@ -102,6 +102,5 @@ public class Player : MonoBehaviour, IDamageable
         anim.SetBool("isDead", true);
 
         StartCoroutine(CameraShake.Instance.ShakeCamera(1f, 0.3f));  //Showing the syntax for camera shake for JUICING the game
-        Time.timeScale = 0f;
     }
 }
