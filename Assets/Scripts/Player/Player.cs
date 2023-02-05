@@ -87,7 +87,11 @@ public class Player : MonoBehaviour, IDamageable
     }
 
     public void TakeDamage(int damage) {
-        Debug.Log("Dies from Cringe");
+        canMove = false;
+        anim.SetBool("isJumping", false);
+        anim.SetBool("isFalling", false);
+        anim.SetBool("isRunning", false);
+        anim.SetBool("isDead", true);
 
         StartCoroutine(CameraShake.Instance.ShakeCamera(1f, 0.3f));  //Showing the syntax for camera shake for JUICING the game
     }
