@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour, IDamageable
 {
@@ -9,6 +10,7 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField] float movementSpeed;
     [SerializeField] Animator anim;
     [SerializeField] SpriteRenderer rendrr;
+    [SerializeField] GameObject deathMenu;
     uint currExtraJumps;
     bool hasJumped;
     Vector2 movement;
@@ -37,7 +39,7 @@ public class Player : MonoBehaviour, IDamageable
         }
         else
         {
-            rb.velocity = new Vector2(0 ,0); //Stop player
+            rb.velocity = new Vector2(0 , rb.velocity.y); //Stop player
             anim.SetBool("isJumping", false);
             anim.SetBool("isFalling", false);
             anim.SetBool("isRunning", false);
@@ -102,5 +104,18 @@ public class Player : MonoBehaviour, IDamageable
         anim.SetBool("isDead", true);
 
         StartCoroutine(CameraShake.Instance.ShakeCamera(1f, 0.3f));  //Showing the syntax for camera shake for JUICING the game
+        StartCoroutine(ShowDeathMenu());
+    }
+
+    public void ReloadLevel()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentSceneIndex);
+    }
+
+    IEnumerator ShowDeathMenu()
+    {
+        yield return new WaitForSeconds(2);
+        deathMenu.SetActive(true);
     }
 }
