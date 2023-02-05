@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5429440070937976729}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -152,6 +152,7 @@ MonoBehaviour:
   movementSpeed: 5
   anim: {fileID: 5429440070937976729}
   rendrr: {fileID: 5429440070937976733}
+  canMove: 1
 --- !u!95 &5429440070937976729
 Animator:
   serializedVersion: 5

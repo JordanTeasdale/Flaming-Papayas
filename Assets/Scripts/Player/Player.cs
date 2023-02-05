@@ -34,6 +34,10 @@ public class Player : MonoBehaviour, IDamageable
             Jump();
             Movement();
         }
+        else
+        {
+            rb.velocity = new Vector2(0 ,0); //Stop player
+        }
 
     }
 
